@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import FirstCompoment,{SecondCompoment} from './components/learning-examples/FirstComponent'
+import FirstComponent from './components/learning-examples/FirstComponent'
+import SecondComponent from './components/learning-examples/SecondComponent.';
+import ThirdComponent from './components/learning-examples/ThirdComponent';
 import logo from './logo.svg';
 import './App.css';
 
@@ -8,9 +10,9 @@ class App extends Component {
     return (
       <div className="App">
        My hello World
-       <FirstCompoment></FirstCompoment>
-       <SecondCompoment></SecondCompoment>
-       <ThirdCompoment></ThirdCompoment>
+       <FirstComponent></FirstComponent>
+       <SecondComponent></SecondComponent>
+       <ThirdComponent></ThirdComponent>
       </div>
     );
   }
@@ -18,13 +20,5 @@ class App extends Component {
 
 
 
-function ThirdCompoment(){
-  return(
-    <div className="thirdComponent">
-     ThirdCompoment
-    </div>
-  );
-}
 
-
-export default App;
+export default App

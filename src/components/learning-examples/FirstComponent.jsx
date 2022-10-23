@@ -1,20 +1,12 @@
 import React,{Component} from "react";
 //Class Componment
-export default class FirstCompoment extends Component {
+class FirstComponent extends Component {
   render() {
     return (
       <div className="firstComponent">
-       FirstCompoment
+       FirstComponent
       </div>
     ); 
   }
 }
-export class SecondCompoment extends Component {
-  render() {
-    return (
-      <div className="secondComponent">
-       SecondCompoment
-      </div>
-    );
-  }
-}
+export default FirstComponent
