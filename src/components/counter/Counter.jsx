@@ -25,7 +25,7 @@ class Counter extends Component{
   return(
     <div className="counter">
       {/* <button onclick={someJSMethodCall()}>+1</button> */}
-      <button onClick={this.increment}>+1</button>
+      <button onClick={this.increment}>+{this.props.by}</button>
       <span className="count"
       //define inline javascript css in jsx
       // style={style}

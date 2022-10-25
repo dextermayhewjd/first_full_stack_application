@@ -10,7 +10,9 @@ class App extends Component {
     return (
       <div className="App">
       {/* <LearningComponents></LearningComponents> */}
-      <Counter/>
+      <Counter by = "1"/>
+      <Counter by = "5"/>
+      <Counter by = "10"/>
       </div>
     );
   }
