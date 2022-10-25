@@ -10,9 +10,10 @@ class App extends Component {
     return (
       <div className="App">
       {/* <LearningComponents></LearningComponents> */}
-      <Counter by = "1"/>
-      <Counter by = "5"/>
-      <Counter by = "10"/>
+      <Counter by = {1}/>
+      {/* could use COounter by = "1" in this case 1 would be string instead of value */}
+      <Counter by = {5}/>
+      <Counter by = {10}/>
       </div>
     );
   }

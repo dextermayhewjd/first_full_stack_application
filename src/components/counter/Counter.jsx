@@ -41,7 +41,7 @@ class Counter extends Component{
               // counter ++
 
   this.setState({
-    counter: this.state.counter+1 ,
+    counter: this.state.counter + this.props.by ,
     // secondCounter:  this.state.secondCounter + 1
  });
  }
