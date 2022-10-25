@@ -1,7 +1,24 @@
 import React, { Component } from "react"
 import './Counter.css'
 import propTypes from 'prop-types'
+
+
 class Counter extends Component{
+  render() {
+    return (
+      <div className="counter">
+      {/* <LearningComponents></LearningComponents> */}
+      <CounterButton />
+      {/* could use COounter by = "1" in this case 1 would be string instead of value */}
+      {/* only using this {}way could assign a integer value to it */}
+      <CounterButton by = {5}/>
+      <CounterButton by = {10}/>
+      </div>
+    );
+  }
+}
+
+class CounterButton extends Component{
   
   // define the initial state in a constructor 
   //state => counter 0
@@ -9,6 +26,7 @@ class Counter extends Component{
   constructor(){
     super();
    
+    //when it is for a one-button-one-counter 
     this.state = {
       counter : 0,
       // secondCounter : 100
@@ -48,12 +66,12 @@ class Counter extends Component{
  }
 }
 
-Counter.defaultProps = {
+CounterButton.defaultProps = {
   by : 1
   // could assign default properies in this way
 }
 
-Counter.propTypes = {
+CounterButton.propTypes = {
   by : propTypes.number
   // could do the prop type check for you
   // but it would only give warning but can still work in the original way
