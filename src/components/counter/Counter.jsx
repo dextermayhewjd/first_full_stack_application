@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import './Counter.css'
+import propTypes from 'prop-types'
 class Counter extends Component{
   
   // define the initial state in a constructor 
@@ -46,4 +47,16 @@ class Counter extends Component{
  });
  }
 }
+
+Counter.defaultProps = {
+  by : 1
+  // could assign default properies in this way
+}
+
+Counter.propTypes = {
+  by : propTypes.number
+  // could do the prop type check for you
+  // but it would only give warning but can still work in the original way
+}
+
 export default Counter
