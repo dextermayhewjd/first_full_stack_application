@@ -4,15 +4,39 @@ import propTypes from 'prop-types'
 
 
 class Counter extends Component{
+ 
+  constructor(){
+    super();
+   
+    //when it is for a one-button-one-counter 
+    this.state = {
+      counter : 0,
+      // secondCounter : 100
+    }
+
+    this.increment = this.increment.bind(this)
+  }
+
+  increment(by){ 
+    // console.log(`increment from parent - ${by}`)
+
+    this.setState({
+        counter: this.state.counter + by
+    })
+
+}
+ 
+ 
   render() {
     return (
       <div className="counter">
       {/* <LearningComponents></LearningComponents> */}
-      <CounterButton />
+      <CounterButton by ={1} incrementMethod={this.increment}/>
       {/* could use COounter by = "1" in this case 1 would be string instead of value */}
       {/* only using this {}way could assign a integer value to it */}
-      <CounterButton by = {5}/>
-      <CounterButton by = {10}/>
+      <CounterButton by ={5} incrementMethod={this.increment}/>
+      <CounterButton by ={10} incrementMethod={this.increment}/>
+      <span className="count">{this.state.counter}</span>
       </div>
     );
   }
@@ -45,11 +69,11 @@ class CounterButton extends Component{
     <div className="counter">
       {/* <button onclick={someJSMethodCall()}>+1</button> */}
       <button onClick={this.increment}>+{this.props.by}</button>
-      <span className="count"
-      //define inline javascript css in jsx
-      // style={style}
-      >
-        {this.state.counter}</span>
+      {/* <span className="count" */}
+      {/* //define inline javascript css in jsx */}
+      {/* // style={style} */}
+      {/* > */}
+        {/* {this.state.counter}</span> */}
       {/* <span className="count">{this.state.secondCounter}</span> */}
 
     </div>
@@ -63,7 +87,9 @@ class CounterButton extends Component{
     counter: this.state.counter + this.props.by ,
     // secondCounter:  this.state.secondCounter + 1
  });
+  this.props.incrementMethod(this.props.by);
  }
+
 }
 
 CounterButton.defaultProps = {
