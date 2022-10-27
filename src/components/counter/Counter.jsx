@@ -20,9 +20,12 @@ class Counter extends Component{
   increment(by){ 
     // console.log(`increment from parent - ${by}`)
 
-    this.setState({
-        counter: this.state.counter + by
-    })
+    this.setState(
+      (prevState) => {
+        // define a arrow function to return counter back
+        return {counter: prevState.counter + by} 
+      }
+      )
 
 }
  
