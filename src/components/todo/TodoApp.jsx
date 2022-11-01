@@ -1,17 +1,20 @@
 import React,{Component} from "react";
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { Routes } from "react-router-dom";
+import { Routes } from "react-router-dom"
+import withNavigation from './WithNavigation.jsx'
 
 class TodoApp extends Component{
     render(){
+        const LoginComponentWithNavigation = withNavigation(LoginComponent);
         return (
             <div className="TodoApp">
                 <Router>
                     <Routes>
                         {/* in Router you can only have one child element */}
-                        <Route path="/" element={<LoginComponent/>}/>
-                        <Route path="/login" element={<LoginComponent/>}/>
+                        <Route path="/" element={<LoginComponentWithNavigation/>}/>
+                        <Route path="/login" element={<LoginComponentWithNavigation/>}/>
                         <Route path="/welcome" element={<WelcomeComponent/>}/>
+                        <Route path="*" element={<ErrorComponent />} />
                     </Routes>
                 </Router>
                 {/* <LoginComponent></LoginComponent> */}
@@ -43,8 +46,8 @@ class LoginComponent extends Component{
         // this.handlerUsernameChange = this.handlerUsernameChange.bind(this)
         // this.handlerPasswordChange = this.handlerPasswordChange.bind(this)
         
-        // this.handleChange = this.handleChange.bind(this)
-        // this.loginClicked = this.loginClicked.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+        this.loginClicked = this.loginClicked.bind(this)
     }
 
     handleChange(event){
@@ -79,18 +82,15 @@ class LoginComponent extends Component{
         // based on the information that passed in 
         if(this.state.username==='dexterding'&&this.state.password==='Jam198522')
         {
-            console.log('Successful')
-            this.setState({showSuccessMessage:true})
-            this.setState({hasLoginFailed:false})
-
+            this.props.navigate(`/welcome`)
         }
         else{
             this.setState({showSuccessMessage:false})
             this.setState({hasLoginFailed:true})
             console.log('Failed')
-
-        // console.log(this.state)
         }
+        console.log(this.state)
+        
     }
     render(){
         return(
@@ -112,6 +112,9 @@ class LoginComponent extends Component{
 
     
 
+}
+function ErrorComponent() {
+    return <div>An Error Occurred. I don't know what to do! Contact support at abcd-efgh-ijkl</div>
 }
 // the use of {this.state.hasLoginFailed && <div>Invaild Credentials</div> } 
 //specify the process of all the logic things
