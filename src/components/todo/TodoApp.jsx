@@ -1,10 +1,20 @@
 import React,{Component} from "react";
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Routes } from "react-router-dom";
 
 class TodoApp extends Component{
     render(){
         return (
             <div className="TodoApp">
-                <LoginComponent></LoginComponent>
+                <Router>
+                    <Routes>
+                        {/* in Router you can only have one child element */}
+                        <Route path="/" element={<LoginComponent/>}/>
+                        <Route path="/login" element={<LoginComponent/>}/>
+                        <Route path="/welcome" element={<WelcomeComponent/>}/>
+                    </Routes>
+                </Router>
+                {/* <LoginComponent></LoginComponent> */}
             </div>
         )
     }
@@ -15,10 +25,6 @@ class WelcomeComponent extends Component{
         return <div>Welcome Back Dexter Ding</div>
     }
 }
-
-
-
-
 
 
 
