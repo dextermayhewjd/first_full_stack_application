@@ -78,8 +78,11 @@ class LoginComponent extends Component{
                 {/* here are two function called with state's true or false boolen passed in 
                 the ShowInvalidCredential and howLoginSuccessMessage are function written 
                 ouside the task */}
-                <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed}/>
-                <ShowLoginSuccessMessage showSuccessMessage ={this.state.showSuccessMessage}/>
+                
+                {/* <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed}/> */}
+                {this.state.hasLoginFailed && <div>Invaild Credentials</div> }
+                {/* <ShowLoginSuccessMessage showSuccessMessage ={this.state.showSuccessMessage}/> */}
+                {this.state.showSuccessMessage && <div>Login Sucessful</div> }
             User Name : <input type="text" name="username" value={this.state.username}onChange={this.handleChange}/>
             Password: <input type="text" name="password"value={this.state.password}onChange={this.handleChange}/>
             <button onClick={this.loginClicked}>Login</button>
