@@ -9,6 +9,19 @@ class TodoApp extends Component{
         )
     }
 }
+
+class WelcomeComponent extends Component{
+    render(){
+        return <div>Welcome Back Dexter Ding</div>
+    }
+}
+
+
+
+
+
+
+
 class LoginComponent extends Component{
     // it is a controlled components because the state is insede the react component
     // for update the last
@@ -23,8 +36,9 @@ class LoginComponent extends Component{
         }
         // this.handlerUsernameChange = this.handlerUsernameChange.bind(this)
         // this.handlerPasswordChange = this.handlerPasswordChange.bind(this)
-        this.handleChange = this.handleChange.bind(this)
-        this.loginClicked = this.loginClicked.bind(this)
+        
+        // this.handleChange = this.handleChange.bind(this)
+        // this.loginClicked = this.loginClicked.bind(this)
     }
 
     handleChange(event){
@@ -93,18 +107,20 @@ class LoginComponent extends Component{
     
 
 }
+// the use of {this.state.hasLoginFailed && <div>Invaild Credentials</div> } 
+//specify the process of all the logic things
 
-function ShowInvalidCredentials(props) {
-    if(props.hasLoginFailed){
-        return<div>Invaild Credentials</div>
-        // the return value could be html script
-    }
-    return null
-}
-function ShowLoginSuccessMessage(props) {
-    if(props.showSuccessMessage){
-        return<div>Login Sucessful</div>
-    }
-    return null
-}
+// function ShowInvalidCredentials(props) {
+//     if(props.hasLoginFailed){
+//         return<div>Invaild Credentials</div>
+//         // the return value could be html script
+//     }
+//     return null
+// }
+// function ShowLoginSuccessMessage(props) {
+//     if(props.showSuccessMessage){
+//         return<div>Login Sucessful</div>
+//     }
+//     return null
+// }
 export default TodoApp
