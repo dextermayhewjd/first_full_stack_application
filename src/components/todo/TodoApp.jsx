@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 import { Routes } from "react-router-dom"
 import withNavigation from './WithNavigation.jsx'
 import withParams from './WithParams.jsx'
-
+import './bootstrap.css';
 class TodoApp extends Component{
     render(){
         const LoginComponentWithNavigation = withNavigation(LoginComponent);
@@ -13,6 +13,7 @@ class TodoApp extends Component{
         return (
             <div className="TodoApp">
                 <Router>
+                    <HeaderComponent/>
                     <Routes>
                         {/* in Router you can only have one child element */}
                         <Route path="/" element={<LoginComponentWithNavigation/>}/>
@@ -21,6 +22,7 @@ class TodoApp extends Component{
                         <Route path="/todos" element={<ListTodosComponent/>} />
                         <Route path="*" element={<ErrorComponent />} />
                     </Routes>
+                    <FooterComponent/>
                 </Router>
                 {/* <LoginComponent></LoginComponent> */}
             </div>
@@ -30,7 +32,24 @@ class TodoApp extends Component{
 
 
 
-
+class HeaderComponent extends Component{
+    render(){
+        return(
+            <div>
+                Header<hr/>
+            </div>
+        )
+    }
+}
+class FooterComponent extends Component{
+    render(){
+        return(
+            <div>
+                <hr/>Footer
+            </div>
+        )
+    }
+}
 class LoginComponent extends Component{
     // it is a controlled components because the state is insede the react component
     // for update the last
