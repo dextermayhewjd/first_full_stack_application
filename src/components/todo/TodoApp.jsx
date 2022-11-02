@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 import { Routes } from "react-router-dom"
 import withNavigation from './WithNavigation.jsx'
 import withParams from './WithParams.jsx'
@@ -120,7 +120,10 @@ function ErrorComponent() {
 class WelcomeComponent extends Component {
     render() {
         return (
-            <div>Welcome {this.props.params.name}</div>
+            <div>
+                {/* Welcome {this.props.params.name}. You can manage your todos <a href="/todos">here</a>.  */}
+                Welcome {this.props.params.name}. You can manage your todos <Link to="/todos">here</Link>. 
+            </div>
         )        
     }
 }
@@ -131,9 +134,9 @@ class ListTodosComponent extends Component {
         this.state = {
             todos : 
             [
-                {id:1,description : 'Learn React'},
-                {id:2,description : 'Learn SpringBoot'},
-                {id:3,description : 'Learn Machine Learninig'}
+                {id:1,description : 'Learn React',done:false,targetDate:new Date()},
+                {id:2,description : 'Learn SpringBoot',done:false,targetDate:new Date()},
+                {id:3,description : 'Learn Machine Learninig',done:false,targetDate:new Date()}
             ]
         }
     }
@@ -148,6 +151,8 @@ class ListTodosComponent extends Component {
                         <tr>
                             <th> id </th>
                             <th>description</th>
+                            <th>whether done or not </th>
+                            <th>target date </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -157,6 +162,8 @@ class ListTodosComponent extends Component {
                                 <tr>
                                     <td>{todo.id}</td>
                                     <td>{todo.description}</td>
+                                    <td>{todo.done.toString()}</td>
+                                    <td>{todo.targetDate.toString()}</td>
                                 </tr>
                             )
                         }               
