@@ -4,6 +4,7 @@ import { Routes } from "react-router-dom"
 import withNavigation from './WithNavigation.jsx'
 import withParams from './WithParams.jsx'
 import './bootstrap.css';
+import './bootstrap.min.css.map'
 class TodoApp extends Component{
     render(){
         const LoginComponentWithNavigation = withNavigation(LoginComponent);
@@ -20,6 +21,7 @@ class TodoApp extends Component{
                         <Route path="/login" element={<LoginComponentWithNavigation/>}/>
                         <Route path="/welcome/:name" element={<WelcomeComponentWithParams />} />
                         <Route path="/todos" element={<ListTodosComponent/>} />
+                        <Route path="/logout" element={<LogoutComponent/>}/>
                         <Route path="*" element={<ErrorComponent />} />
                     </Routes>
                     <FooterComponent/>
@@ -35,18 +37,42 @@ class TodoApp extends Component{
 class HeaderComponent extends Component{
     render(){
         return(
-            <div>
-                Header<hr/>
-            </div>
+            <header> 
+                <nav className="navbar nabar-expand-md navbar-dark bg-dark">
+                    <div><a href="https://www.linkedin.com/in/jiahua-ding-7933b1198/" className="navbar-brand">DexterDing </a> </div>   
+                    <ul className="navbar-nav" >
+                        <li><Link className="nav-link" to="/welcome/dexterding">Home</Link></li>
+                        <li><Link className="nav-link" to="/todos">Todos</Link></li>
+                    </ul>
+                    <ul className="navbar-nav navbar-collapse justify-content-end">
+                        <li><Link className="nav-link"to="/login">Login</Link></li>
+                        <li><Link className="nav-link"to="/logout">Logout</Link></li>
+                    </ul>
+                </nav>
+            </header>
+        )
+    }
+}
+
+class LogoutComponent extends Component{
+    render(){
+        return(
+            <>
+                <h1>You are logged out</h1>
+                <div className="container">
+                    Thank You For Using My Application
+                </div>
+            </>
         )
     }
 }
 class FooterComponent extends Component{
     render(){
         return(
-            <div>
-                <hr/>Footer
-            </div>
+           <footer className="footer">
+               <span className="text-muted">All Rights Reserved2022 @DexterDing</span>
+            </footer>
+               
         )
     }
 }
@@ -117,15 +143,17 @@ class LoginComponent extends Component{
                 {/* here are two function called with state's true or false boolen passed in 
                 the ShowInvalidCredential and howLoginSuccessMessage are function written 
                 ouside the task */}
-                
+                <h1>Login</h1>
+                <div className="container">
                 {/* <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed}/> */}
-                {this.state.hasLoginFailed && <div>Invaild Credentials</div> }
+                {this.state.hasLoginFailed && <div className="alert alert-warning">Invaild Credentials</div> }
                 {/* <ShowLoginSuccessMessage showSuccessMessage ={this.state.showSuccessMessage}/> */}
                 {this.state.showSuccessMessage && <div>Login Sucessful</div> }
             User Name : <input type="text" name="username" value={this.state.username}onChange={this.handleChange}/>
             Password: <input type="text" name="password"value={this.state.password}onChange={this.handleChange}/>
-            <button onClick={this.loginClicked}>Login</button>
+            <button classNmae="btn btn=sucess"onClick={this.loginClicked}>Login</button>
             </div>
+        </div>
             )
     }
 
@@ -139,10 +167,13 @@ function ErrorComponent() {
 class WelcomeComponent extends Component {
     render() {
         return (
-            <div>
+            <>
+            <h1>Welcome!</h1>
+            <div className="container">
                 {/* Welcome {this.props.params.name}. You can manage your todos <a href="/todos">here</a>.  */}
                 Welcome {this.props.params.name}. You can manage your todos <Link to="/todos">here</Link>. 
             </div>
+            </>
         )        
     }
 }
@@ -165,7 +196,10 @@ class ListTodosComponent extends Component {
         return (
             <div>
                 <h1>List Todos</h1>
-                <table>
+                <div className="container">
+
+
+                <table className="table">
                     <thead>
                         <tr>
                             <th> id </th>
@@ -188,6 +222,7 @@ class ListTodosComponent extends Component {
                         }               
                     </tbody>
                 </table>
+                </div>
             </div>
         )        
     }
