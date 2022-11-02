@@ -18,6 +18,7 @@ class TodoApp extends Component{
                         <Route path="/" element={<LoginComponentWithNavigation/>}/>
                         <Route path="/login" element={<LoginComponentWithNavigation/>}/>
                         <Route path="/welcome/:name" element={<WelcomeComponentWithParams />} />
+                        <Route path="/todos" element={<ListTodosComponent/>} />
                         <Route path="*" element={<ErrorComponent />} />
                     </Routes>
                 </Router>
@@ -123,6 +124,49 @@ class WelcomeComponent extends Component {
         )        
     }
 }
+
+class ListTodosComponent extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            todos : 
+            [
+                {id:1,description : 'Learn React'},
+                {id:2,description : 'Learn SpringBoot'},
+                {id:3,description : 'Learn Machine Learninig'}
+            ]
+        }
+    }
+    
+    
+    render() {
+        return (
+            <div>
+                <h1>List Todos</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th> id </th>
+                            <th>description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            this.state.todos.map(
+                            todo => 
+                                <tr>
+                                    <td>{todo.id}</td>
+                                    <td>{todo.description}</td>
+                                </tr>
+                            )
+                        }               
+                    </tbody>
+                </table>
+            </div>
+        )        
+    }
+}
+
 // the use of {this.state.hasLoginFailed && <div>Invaild Credentials</div> } 
 //specify the process of all the logic things
 
