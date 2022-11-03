@@ -5,6 +5,7 @@ import withNavigation from './WithNavigation.jsx'
 import withParams from './WithParams.jsx'
 import './bootstrap.css';
 import './bootstrap.min.css.map'
+import AuthenticationService from "./AuthenticationService.js";
 class TodoApp extends Component{
     render(){
         const LoginComponentWithNavigation = withNavigation(LoginComponent);
@@ -127,6 +128,7 @@ class LoginComponent extends Component{
         // based on the information that passed in 
         if(this.state.username==='dexterding'&&this.state.password==='Jam198522')
         {
+            AuthenticationService.registerSuccessfullLogin(this.state.username,this.state.password)
             this.props.navigate(`/welcome/${this.state.username}`)
         }
         else{
@@ -202,7 +204,7 @@ class ListTodosComponent extends Component {
                 <table className="table">
                     <thead>
                         <tr>
-                            <th> id </th>
+                            {/* <th> id </th> */}
                             <th>description</th>
                             <th>whether done or not </th>
                             <th>target date </th>
@@ -213,7 +215,7 @@ class ListTodosComponent extends Component {
                             this.state.todos.map(
                             todo => 
                                 <tr>
-                                    <td>{todo.id}</td>
+                                    {/* <td>{todo.id}</td> */}
                                     <td>{todo.description}</td>
                                     <td>{todo.done.toString()}</td>
                                     <td>{todo.targetDate.toString()}</td>
