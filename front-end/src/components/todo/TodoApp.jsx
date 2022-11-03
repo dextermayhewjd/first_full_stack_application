@@ -1,6 +1,5 @@
 import React,{Component} from "react";
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
-import AuthenticationService from "./AuthenticationService.js";
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Routes } from "react-router-dom"
 import withNavigation from './WithNavigation.jsx'
 import withParams from './WithParams.jsx'
