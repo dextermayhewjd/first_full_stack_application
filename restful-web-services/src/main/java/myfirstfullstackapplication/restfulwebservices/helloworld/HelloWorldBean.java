@@ -1,4 +1,4 @@
-package myfirstfullstackapplication.restfulwebservices;
+package myfirstfullstackapplication.restfulwebservices.helloworld;
 
 public class HelloWorldBean {
     private  String message;
