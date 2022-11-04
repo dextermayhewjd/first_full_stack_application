@@ -37,13 +37,19 @@ class WelcomeComponent extends Component {
     }
         retrieveEwlcomeMessage(){
             // execuate the api that defined in the api in the api/todo folder
-            HelloWorldService.execuateHelloWorldService()
+            
+            // HelloWorldService.execuateHelloWorldService()
+            // .then(response => this.handleSuccessfulResponse(response))
+            
+            // in this step the return value is a json so need to change the response
+            HelloWorldService.execuateHelloWorldBeanService()
             .then(response => this.handleSuccessfulResponse(response))
         }
 
         handleSuccessfulResponse(response){
             // the response has many information that could be seen in the console
-            this.setState({welcomeMessage: response.data})
+            this.setState({welcomeMessage: response.data.message})
+            // the response.data is longer usable , you need to use the response.data.message
         }
 
 

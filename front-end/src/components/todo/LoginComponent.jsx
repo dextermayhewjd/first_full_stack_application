@@ -53,6 +53,8 @@ class LoginComponent extends Component{
         if(this.state.username==='dexterding'&&this.state.password==='Jam198522')
         {
             AuthenticationService.registerSuccessfullLogin(this.state.username,this.state.password)
+            this.setState({showSuccessMessage:true})
+            this.setState({hasLoginFailed:false})
             this.props.navigate(`/welcome/${this.state.username}`)
         }
         else{
