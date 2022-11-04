@@ -38,11 +38,15 @@ class WelcomeComponent extends Component {
         retrieveEwlcomeMessage(){
             // execuate the api that defined in the api in the api/todo folder
             
-            // HelloWorldService.execuateHelloWorldService()
+            // 1 . HelloWorldService.execuateHelloWorldService()
             // .then(response => this.handleSuccessfulResponse(response))
             
-            // in this step the return value is a json so need to change the response
-            HelloWorldService.execuateHelloWorldBeanService()
+            // 2 . in this step the return value is a json so need to change the response
+            // HelloWorldService.execuateHelloWorldBeanService()
+            // .then(response => this.handleSuccessfulResponse(response))
+            
+            //3.q. how to get the name  a. in the props.match.params.name
+            HelloWorldService.execuateHelloWorldPathVariableService(this.props.params.name)
             .then(response => this.handleSuccessfulResponse(response))
         }
 
