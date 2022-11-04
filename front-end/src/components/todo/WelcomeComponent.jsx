@@ -8,7 +8,7 @@ class WelcomeComponent extends Component {
         
         this.retrieveEwlcomeMessage = this.retrieveEwlcomeMessage.bind(this)
         this.handleSuccessfulResponse = this.handleSuccessfulResponse.bind(this)
-        
+        this.handleError = this.handleError.bind(this)
         
         this.state = {
             welcomeMessage :''
@@ -48,11 +48,22 @@ class WelcomeComponent extends Component {
             //3.q. how to get the name  a. in the props.match.params.name
             HelloWorldService.execuateHelloWorldPathVariableService(this.props.params.name)
             .then(response => this.handleSuccessfulResponse(response))
+            .catch(error => this.handleError(error))
         }
 
         handleSuccessfulResponse(response){
             // the response has many information that could be seen in the console
+            console.log(response)
             this.setState({welcomeMessage: response.data.message})
+            // the response.data is longer usable , you need to use the response.data.message
+        }
+        handleError(error){
+            // the response has many information that could be seen in the console
+            
+            // only write the line below in console.log will show in the brower's console
+            console.log(error.response)
+
+            this.setState({welcomeMessage: error.response.data.message})
             // the response.data is longer usable , you need to use the response.data.message
         }
 
