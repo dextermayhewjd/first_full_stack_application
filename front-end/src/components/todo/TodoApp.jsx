@@ -17,9 +17,12 @@ import WelcomeComponent from "./WelcomeComponent.jsx";
 class TodoApp extends Component{
     render(){
         const LoginComponentWithNavigation = withNavigation(LoginComponent);
-        
+        const ListTodoComponentWithNavigation = withNavigation(ListTodosComponent)
+
         const WelcomeComponentWithParams = withParams(WelcomeComponent);
         
+        // const TodoComponentWithParamsAndNavigation = withParams(withNavigation(TodoComponent));
+
         const HeaderComponentWithNavigation = withNavigation(HeaderComponent);
         return (
             <div className="TodoApp">
@@ -35,8 +38,12 @@ class TodoApp extends Component{
                             </AuthenticatedRoute>} /> 
                         <Route path="/todos" element={
                             <AuthenticatedRoute>
-                                <ListTodosComponent />
+                                <ListTodoComponentWithNavigation/>
                             </AuthenticatedRoute>} />
+                        {/* <Route path="/todos/:id" element={ 
+                            <AuthenticatedRoute>
+                                <TodoComponentWithParamsAndNavigation />
+                            </AuthenticatedRoute>} /> */}
                         <Route path="/logout" element={
                             <AuthenticatedRoute>
                                 <LogoutComponent />
