@@ -14,6 +14,7 @@ import LogoutComponent from "./LogoutComponent.jsx";
 import ErrorComponent from "./ErrorComponent.jsx";
 import FooterComponent from "./FooterComponent.jsx";
 import WelcomeComponent from "./WelcomeComponent.jsx";
+import TodoComponent from "./TodoComponent"
 class TodoApp extends Component{
     render(){
         const LoginComponentWithNavigation = withNavigation(LoginComponent);
@@ -21,7 +22,7 @@ class TodoApp extends Component{
 
         const WelcomeComponentWithParams = withParams(WelcomeComponent);
         
-        // const TodoComponentWithParamsAndNavigation = withParams(withNavigation(TodoComponent));
+        const TodoComponentWithParamsAndNavigation = withParams(withNavigation(TodoComponent));
 
         const HeaderComponentWithNavigation = withNavigation(HeaderComponent);
         return (
@@ -36,14 +37,16 @@ class TodoApp extends Component{
                             <AuthenticatedRoute>
                                 <WelcomeComponentWithParams />
                             </AuthenticatedRoute>} /> 
+                        {/* route has priority the higher the more advanced  */}
+                        <Route path="/todos/:id" element={ 
+                            <AuthenticatedRoute>
+                                <TodoComponentWithParamsAndNavigation />
+                            </AuthenticatedRoute>} />
                         <Route path="/todos" element={
                             <AuthenticatedRoute>
                                 <ListTodoComponentWithNavigation/>
                             </AuthenticatedRoute>} />
-                        {/* <Route path="/todos/:id" element={ 
-                            <AuthenticatedRoute>
-                                <TodoComponentWithParamsAndNavigation />
-                            </AuthenticatedRoute>} /> */}
+                        
                         <Route path="/logout" element={
                             <AuthenticatedRoute>
                                 <LogoutComponent />

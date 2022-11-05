@@ -18,16 +18,16 @@ class ListTodosComponent extends Component {
 
 
         }
-
+        this.updateTodoClicked = this.updateTodoClicked.bind(this)
         this.deleteTodoClicked = this.deleteTodoClicked.bind(this)
         this.refreshTodos = this.refreshTodos.bind(this)
 
     }
     // write this line only to write log on the github 
     componentDidMount(){
-       
+        console.log('componentDidMount')
         this.refreshTodos();
-
+        console.log(this.state)
     }
 
     refreshTodos(){
@@ -53,6 +53,21 @@ class ListTodosComponent extends Component {
         )
     }
 
+
+    updateTodoClicked(id){
+        console.log('update'+id)
+        this.props.navigate(`/todos/${id}`)
+        // let username = AuthenticationService.getLoggedInUserName()
+        // // console.log(id + " " +username); 
+        // TodoDataService.deleteTodo(username,id)
+        // .then(
+        //     response => {
+        //         this.setState({message : ` Delete of todo ${id} Successful`})
+        //         this.refreshTodos()
+        //     }
+        // )
+    }
+
     render() {
         return (
             <div>
@@ -65,6 +80,9 @@ class ListTodosComponent extends Component {
                             <th>description</th>
                             <th>whether done or not </th>
                             <th>target date </th>
+                            <th>Update</th>
+                            <th>Delete</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -76,6 +94,7 @@ class ListTodosComponent extends Component {
                                     <td>{todo.description}</td>
                                     <td>{todo.done.toString()}</td>
                                     <td>{todo.targetDate.toString()}</td>
+                                    <td><button className='btn bt-success' onClick={() => this.updateTodoClicked(todo.id)}>Update</button></td>                              
                                     <td><button className='btn bt-warning' onClick={() => this.deleteTodoClicked(todo.id)}>Delete</button></td>
                                 </tr>
                             )
