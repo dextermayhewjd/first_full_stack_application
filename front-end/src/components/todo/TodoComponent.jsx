@@ -10,16 +10,45 @@ class TodosComponent extends Component{
        
         this.state = {
             id : this.props.params.id,
-            description : '',
+            description : 'Learn Forms Now',
             targetDate : moment(new Date()).format('YYYY-MM-DD')
         }
+        
+        this.onSubmit = this.onSubmit.bind(this)
+
+
     }
+
+    onSubmit(values){
+            console.log(values);
+        }
     render(){
+        // let description = this.state.description
+        // let targetDate = this.state.targetDate
+        // a simple way to define
+        let {description,targetDate} = this.state
+        //let test = {a:'1',b:'2',c:'3'}
+        //let {a,b,c} = test
+        //this is called restructuring
+        
         return (
         <div>
             <h1>Todo</h1>
             <div classname= "container">
-                <Formik>
+                <Formik
+                    initialValues = {
+                        {
+                            // description : description,
+                            // tagetDate : targetDate
+                            // if the key has the same name as the value 
+                            // don't have to type it twice
+                            description,
+                            targetDate
+                        }
+                    }
+                    onSubmit = {this.onSubmit}
+                
+                >
                     {
                         (props) => (
                             <Form>
