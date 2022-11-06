@@ -2,7 +2,8 @@ import React,{Component} from "react";
 import moment from "moment";
 import { ErrorMessage, Field, Formik } from "formik";
 import { Form } from "formik"
-
+import TodoDataService from "../../api/todo/TodoDataService";
+import AuthenticationService from "./AuthenticationService"
 class TodosComponent extends Component{
     
     constructor(props){
@@ -17,6 +18,16 @@ class TodosComponent extends Component{
         this.onSubmit = this.onSubmit.bind(this)
         this.validate = this.validate.bind(this)
 
+    }
+
+    componentDidMount(){
+        let username = AuthenticationService.getLoggedInUserName()
+        TodoDataService.retrieveTodo(username,this.state.id)
+            .then(response => this.setState({
+                description: response.data.description,
+                targetDate: moment(response.data.targetDate).format('YYYY-MM-DD')   
+            }
+            ))
     }
 
     onSubmit(values){
@@ -63,7 +74,7 @@ class TodosComponent extends Component{
                     validateOnBlur = {false}
                     validateOnChange = {false}
                     validate={this.validate}
-                
+                    enableReinitialize={true}
                 >
                     {
                         (props) => (
