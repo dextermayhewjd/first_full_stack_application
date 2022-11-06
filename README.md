@@ -72,3 +72,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### `npm add axios`
 This would enable you to make connection between the front-end and the back-end 
 You can find more information about axios which is a PROMISE based HTTP client for browser here[https://github.com/axios/axios]
+
+### `npm add fromik `
+### `npm add moment`
