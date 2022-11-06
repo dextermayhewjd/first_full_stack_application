@@ -12,7 +12,7 @@ public class Todo {
     private boolean isDone;
 
     protected Todo() {
-        
+
     }
     // if I want to have something as a request body you need to actually have a default constructor with no argument
 
