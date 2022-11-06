@@ -1,6 +1,6 @@
 import React,{Component} from "react";
 import moment from "moment";
-import { Field, Formik } from "formik";
+import { ErrorMessage, Field, Formik } from "formik";
 import { Form } from "formik"
 
 class TodosComponent extends Component{
@@ -15,13 +15,26 @@ class TodosComponent extends Component{
         }
         
         this.onSubmit = this.onSubmit.bind(this)
-
+        this.validate = this.validate.bind(this)
 
     }
 
     onSubmit(values){
             console.log(values);
         }
+    validate(values){
+        let errors = {}
+        if(!values.description){
+            errors.description = 'Enter a Description'
+        }else if(values.description.length<5){
+            errors={description:'Should have at least 5 Characters'}
+        }
+
+        if(!moment(values.targetDate).isValid()){
+            errors.targetDate = ' Enter a valid Target Date '
+        }
+        return errors
+    }
     render(){
         // let description = this.state.description
         // let targetDate = this.state.targetDate
@@ -47,11 +60,18 @@ class TodosComponent extends Component{
                         }
                     }
                     onSubmit = {this.onSubmit}
+                    validateOnBlur = {false}
+                    validateOnChange = {false}
+                    validate={this.validate}
                 
                 >
                     {
                         (props) => (
                             <Form>
+                                <ErrorMessage name = "description" component="div" 
+                                                    className="alert alert-warning"></ErrorMessage>
+                                <ErrorMessage name = "targetDate" component="div" 
+                                                    className="alert alert-warning"></ErrorMessage>
                                 <fieldset className="form-group">
                                     <label>Description</label>
                                     <Field className="form-control" type="text" name="description"></Field>                                  
