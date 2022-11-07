@@ -60,6 +60,7 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
             .anyRequest().authenticated();
 
+        // every request should go through the jwt authentication token filter
        httpSecurity
             .addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
         

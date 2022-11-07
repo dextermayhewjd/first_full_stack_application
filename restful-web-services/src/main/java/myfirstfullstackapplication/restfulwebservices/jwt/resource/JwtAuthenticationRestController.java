@@ -44,6 +44,8 @@ public class JwtAuthenticationRestController {
     final String token = jwtTokenUtil.generateToken(userDetails);
 
     return ResponseEntity.ok(new JwtTokenResponse(token));
+
+    // after I pass the username and password what would happen
   }
 
   @RequestMapping(value = "${jwt.refresh.token.uri}", method = RequestMethod.GET)
