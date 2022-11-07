@@ -50,29 +50,55 @@ class LoginComponent extends Component{
         //dexterding,Jam198522
         // this in class function is a function to determine and change state 
         // based on the information that passed in 
-        if(this.state.username==='dexterding'&&this.state.password==='Jam198522')
-        {
-            AuthenticationService.registerSuccessfullLogin(this.state.username,this.state.password)
-            this.setState({showSuccessMessage:true})
-            this.setState({hasLoginFailed:false})
-            this.props.navigate(`/welcome/${this.state.username}`)
-        }
-        else{
-            this.setState({showSuccessMessage:false})
-            this.setState({hasLoginFailed:true})
-            console.log('Failed')
-        }
+        // if(this.state.username==='dexterding'&&this.state.password==='Jam198522')
+        // {
+        //     AuthenticationService.registerSuccessfullLogin(this.state.username,this.state.password)
+        //     this.setState({showSuccessMessage:true})
+        //     this.setState({hasLoginFailed:false})
+        //     this.props.navigate(`/welcome/${this.state.username}`)
+        // }
+        // else{
+        //     this.setState({showSuccessMessage:false})
+        //     this.setState({hasLoginFailed:true})
+        //     console.log('Failed')
+        // }
         console.log(this.state)
-        AuthenticationService.executeBasicAuthenticationService(this.state.username,this.state.password)
+        // AuthenticationService.executeBasicAuthenticationService(this.state.username,this.state.password)
+        // .then(
+        //     ()=>{
+        //         AuthenticationService.registerSuccessfullLogin(this.state.username,this.state.password)
+        //     this.setState({showSuccessMessage:true})
+        //     this.setState({hasLoginFailed:false})
+        //     this.props.navigate(`/welcome/${this.state.username}`)
+        //     }
+        // )
+        // .catch(
+        //     ()=>{
+        //         this.setState({showSuccessMessage:false})
+        //     this.setState({hasLoginFailed:true})
+        //     console.log('Failed') 
+        //     }
+        // )
+       
+        AuthenticationService
+        .executeJwtAuthenticationService(this.state.username,this.state.password)
         .then(
-            ()=>{
-                AuthenticationService.registerSuccessfullLogin(this.state.username,this.state.password)
-            this.setState({showSuccessMessage:true})
-            this.setState({hasLoginFailed:false})
+            (response)=>{               
+            AuthenticationService.registerSuccessfullLoginForJwt(this.state.username,response.data.token)
+            console.log('registersuccessful')
             this.props.navigate(`/welcome/${this.state.username}`)
+            this.setState({showSuccessMessage:true})
+            console.log('got response')
+            })
+        .catch(
+            ()=>{
+                this.setState({showSuccessMessage:false})
+            this.setState({hasLoginFailed:true})
+            // console.log('Failed') 
             }
         )
-        .catch()
+
+
     }
     render(){
         return(
@@ -88,7 +114,7 @@ class LoginComponent extends Component{
                 {this.state.showSuccessMessage && <div>Login Sucessful</div> }
             User Name : <input type="text" name="username" value={this.state.username}onChange={this.handleChange}/>
             Password: <input type="text" name="password"value={this.state.password}onChange={this.handleChange}/>
-            <button className="btn btn=sucess"onClick={this.loginClicked}>Login</button>
+            <button className="btn btn-success"onClick={this.loginClicked}>Login</button>
             </div>
         </div>
             )
