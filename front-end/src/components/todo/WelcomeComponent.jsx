@@ -62,6 +62,12 @@ class WelcomeComponent extends Component {
             
             // only write the line below in console.log will show in the brower's console
             console.log(error.response)
+            let errorMessage =''
+            if(error.message)
+            errorMessage += error.message
+            if(errorMessage &&error.response.data){
+                errorMessage+=error.response.data.message
+            }
 
             this.setState({welcomeMessage: error.response.data.message})
             // the response.data is longer usable , you need to use the response.data.message
