@@ -63,7 +63,16 @@ class LoginComponent extends Component{
             console.log('Failed')
         }
         console.log(this.state)
-        
+        AuthenticationService.executeBasicAuthenticationService(this.state.username,this.state.password)
+        .then(
+            ()=>{
+                AuthenticationService.registerSuccessfullLogin(this.state.username,this.state.password)
+            this.setState({showSuccessMessage:true})
+            this.setState({hasLoginFailed:false})
+            this.props.navigate(`/welcome/${this.state.username}`)
+            }
+        )
+        .catch()
     }
     render(){
         return(

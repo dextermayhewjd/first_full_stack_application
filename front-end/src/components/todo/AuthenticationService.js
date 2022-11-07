@@ -1,11 +1,25 @@
 import axios from "axios";
 class AuthenticationService{
+    
+    executeBasicAuthenticationService(username,password){
+        
+        return axios.get('http://localhost:8080/basicauth',
+            {headers: {authorization:this.createBasicAuthToken(username,password) }})
+    }
+    
+    createBasicAuthToken(username,password){
+        return 'Basic '+window.btoa(username +":"+password)
+    }
+
     registerSuccessfullLogin(username,password){
         //data stored in localStorage has no expiration time 
         //data stored in sessionStorage gets cleared when the page seesion ends
+        // let basicAuthHeader = 'Basic '+window.btoa(username +":"+password)
+
         sessionStorage.setItem('authenticatedUser',username);
-        this.setupAxiosInterceptors()
+        this.setupAxiosInterceptors(this.createBasicAuthToken(username,password))
     }
+    
     logout(){
         sessionStorage.removeItem('authenticatedUser')
     }
@@ -19,12 +33,12 @@ class AuthenticationService{
         if(user===null){return ''}
         else{return user}
     }
-    setupAxiosInterceptors(){
+    setupAxiosInterceptors(basicAuthHeader){
 
-        let username = 'user'
-        let password = 'password'
+        // let username = 'user'
+        // let password = 'password'
 
-        let basicAuthHeader = 'Basic '+window.btoa(username +":"+password)
+        // let basicAuthHeader = 'Basic '+window.btoa(username +":"+password)
 
         axios.interceptors.request.use(
             (config) => {
@@ -35,6 +49,7 @@ class AuthenticationService{
         }
         )
     }
+
 
 }
 export default new AuthenticationService()
