@@ -11,7 +11,7 @@ class TodosComponent extends Component{
        
         this.state = {
             id : this.props.params.id,
-            description : 'Learn Forms Now',
+            description : '',
             targetDate : moment(new Date()).format('YYYY-MM-DD')
         }
         
@@ -20,44 +20,55 @@ class TodosComponent extends Component{
 
     }
 
-    componentDidMount(){
+    componentDidMount() {
+
+        if (this.state.id === -1) {
+            return
+        }
+
         let username = AuthenticationService.getLoggedInUserName()
-        TodoDataService.retrieveTodo(username,this.state.id)
+
+        TodoDataService.retrieveTodo(username, this.state.id)
             .then(response => this.setState({
                 description: response.data.description,
-                targetDate: moment(response.data.targetDate).format('YYYY-MM-DD')   
-            }
-            ))
+                targetDate: moment(response.data.targetDate).format('YYYY-MM-DD')
+            }))
     }
-
-    onSubmit(values){
-        let username = AuthenticationService.getLoggedInUserName()
-
-        TodoDataService.updateTodo(username,this.state.id,{
-            id : this.state.id,
-            description: values.description,
-            targetDate: values.targetDate
-
-        }).then(
-            () => {
-                this.props.navigate('/todos')
-            }
-        )    
-        console.log(values);
-        }
-    validate(values){
+    validate(values) {
         let errors = {}
-        if(!values.description){
+        if (!values.description) {
             errors.description = 'Enter a Description'
-        }else if(values.description.length<5){
-            errors={description:'Should have at least 5 Characters'}
+        } else if (values.description.length < 5) {
+            errors = { description: 'Should have at least 5 Characters' }
         }
 
-        if(!moment(values.targetDate).isValid()){
+        if (!moment(values.targetDate).isValid()) {
             errors.targetDate = ' Enter a valid Target Date '
         }
         return errors
     }
+    onSubmit(values) {
+        let username = AuthenticationService.getLoggedInUserName()
+
+        let todo = {
+            id: this.state.id,
+            description: values.description,
+            targetDate: values.targetDate
+        }
+
+        if (this.state.id === -1) {
+            TodoDataService.createTodo(username, todo)
+                .then(() => this.props.navigate('/todos')) 
+        
+        } else {
+            TodoDataService.updateTodo(username, this.state.id, todo)
+                .then(() => this.props.navigate('/todos'))
+           
+        }
+
+        console.log(values);
+    }
+   
     render(){
         // let description = this.state.description
         // let targetDate = this.state.targetDate
@@ -70,7 +81,7 @@ class TodosComponent extends Component{
         return (
         <div>
             <h1>Todo</h1>
-            <div classname= "container">
+            <div className= "container">
                 <Formik
                     initialValues = {
                         {
@@ -103,7 +114,7 @@ class TodosComponent extends Component{
                                     <label>Target Date</label>
                                     <Field className="form-control" type="date" name="targetDate" ></Field>                                  
                                 </fieldset>
-                                <button classname="btn btn-success" type="submit">Save</button>
+                                <button className="btn btn-success" type="submit">Save</button>
                             </Form>
                         )
                     }

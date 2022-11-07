@@ -41,7 +41,7 @@ public class TodoHardcodeService {
 
     public Todo save(Todo todo){
         // by default the url of the todo is 0
-        if (todo.getId()==-1||todo.getId()==0){
+        if (todo.getId()==-1 || todo.getId()==0){
             todo.setId(++idCounter);
             todos.add(todo);
         }else {

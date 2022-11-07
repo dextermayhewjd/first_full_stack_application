@@ -11,9 +11,7 @@ public class Todo {
     private Date targetDate;
     private boolean isDone;
 
-    protected Todo() {
-
-    }
+    protected Todo() {}
     // if I want to have something as a request body you need to actually have a default constructor with no argument
 
     public Todo(long id, String username, String description, Date targetDate, boolean isDone) {
