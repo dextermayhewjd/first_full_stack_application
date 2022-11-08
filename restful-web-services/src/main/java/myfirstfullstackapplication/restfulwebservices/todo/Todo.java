@@ -1,20 +1,26 @@
 package myfirstfullstackapplication.restfulwebservices.todo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Date;
 import java.util.Objects;
 
-
+@Entity
 public class Todo {
-    private long id;
+    @Id // the primary key need to be Long
+    @GeneratedValue
+    private Long id;
     private String username;
     private String description;
     private Date targetDate;
     private boolean isDone;
 
-    protected Todo() {}
+    public Todo() {}
     // if I want to have something as a request body you need to actually have a default constructor with no argument
 
     public Todo(long id, String username, String description, Date targetDate, boolean isDone) {
+        super();
         this.id = id;
         this.username = username;
         this.description = description;
@@ -22,11 +28,11 @@ public class Todo {
         this.isDone = isDone;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
