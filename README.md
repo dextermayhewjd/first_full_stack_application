@@ -2,6 +2,22 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+## key useful changes
+
+### `deploy it on different server`
+By default the web app is localhost:4200
+the backend is localhost:8080
+
+if you want to deploy them at different server instead of localhost
+you should change the backend's server layer url in the front end's constants.js file
+in the backend you should change the cross origin url which is where the front end send all the request
+to be more specific in the resoure file such as TodoJpaResource change the @CrossOrigin(origins ="http://localhost:4200")
+
+### `if you want to create your own user`
+you should first change the rawpassword to your password and choose one of the password generated in the BcryptEncoderTest
+and then copy one of them and put it in the JwtInMemoryUserDetailsService document in the back end
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -9,7 +25,7 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:4200](http://localhost:4200) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
@@ -73,5 +89,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 This would enable you to make connection between the front-end and the back-end 
 You can find more information about axios which is a PROMISE based HTTP client for browser here[https://github.com/axios/axios]
 
-### `npm add fromik `
+### `npm add formik `
+This enable you to use the formik to create a table instead of hard code one 
+this is the document of how to use it [https://formik.org/docs/overview]
 ### `npm add moment`
+enable you to get a more formated date representation
+this is the document of how to use it[https://momentjs.com/]
+

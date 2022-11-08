@@ -6,7 +6,7 @@ public class BcryptEncoderTest {
 
 
        for(int i = 1;i<=10;i++){
-           String encodedString = encoder.encode("Jam198522");
+           String encodedString = encoder.encode("rawpassword");
            System.out.println(encodedString);
        }
 
